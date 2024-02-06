@@ -6,6 +6,9 @@
     warRemotePath: /opt/apache-tomcat-{{ tomcat_version }}/webapps
 
   tasks:
+  - name: ping buildserver
+    ping:
+
   - name: Copy WAR to Remote server
     become: true
     copy: 
