@@ -1,16 +1,17 @@
 ---
 - hosts: buildserver
   vars:
-    warName: java-example-0.0.1-SNAPSHOT.war
+    warName: sample.war
     tomcat_version: 8.5.98
     warRemotePath: /opt/apache-tomcat-{{ tomcat_version }}/webapps
 
   tasks:
   - name: Copy WAR to Remote server
+    become: true
     copy: 
-      src: target/{{ warName }} 
+      src: "/home/labsuser/ansible_project/{{ warName }}" 
       dest: "{{ warRemotePath }}/{{ warName }}" 
       owner: tomcat 
       group: tomcat
-      remote_src: yes
+      #remote_src: yes
 
